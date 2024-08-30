@@ -1,0 +1,27 @@
+export const theme = {
+  dark: false,
+  colors: {
+    primary: "#d60b52",
+    secondary: "#f4a261",
+    background: "#E5E5E5",
+    card: "#FFFFFF",
+    text: "#4A4A4A",
+    textSecondary: "#6D6D6D",
+    border: "#D1D1D1",
+    notification: "#E94E77",
+    headerHomeBackground: "#d60b52",
+    success: "#4CAF50",
+    warning: "#FFC107",
+    error: "#F44336",
+    info: "#2196F3",
+    lightText: "#9E9E9E",
+    darkText: "#212121",
+    mutedBackground: "#F5F5F5",
+    highlight: "#FFEB3B",
+    disabled: "#BDBDBD",
+    overlay: "rgba(0, 0, 0, 0.5)",
+  },
+  fonts: {
+    regular: "Roboto",
+  },
+};
