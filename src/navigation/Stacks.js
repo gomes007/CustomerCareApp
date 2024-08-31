@@ -38,9 +38,9 @@ const MenuButton = ({ navigation }) => (
   >
     <Icon
       name="menu"
-      size={25}
+      size={35}
       color={theme.colors.card}
-      style={{ marginLeft: 10 }}
+      style={{ marginLeft: 0 }}
     />
   </TouchableOpacity>
 );
@@ -86,21 +86,26 @@ const homeMainOptions = ({ navigation }) => ({
       <View style={styles.menuButtonContainer}>
         <MenuButton navigation={navigation} />
       </View>
-      <TextInput
-        style={styles.searchInput}
-        placeholder="Buscar..."
-        placeholderTextColor="#888"
-      />
-      <Icon name="notifications-outline" size={24} color="#000" style={styles.notificationIcon} />
+      <View style={styles.searchContainer}>
+        <Icon name="search" size={18} color="#fff" style={styles.searchIcon} />
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search..."
+          placeholderTextColor="#fff"
+        />
+      </View>
+      <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
+        <Icon name="notifications-outline" size={24} color="#fff" style={styles.notificationIcon} />
+      </TouchableOpacity>
     </View>
   ),
-  headerTitleAlign: 'center', // Garante que o título seja centralizado no cabeçalho
+  headerTitleAlign: 'center',
   headerLeftContainerStyle: {
-    paddingLeft: 0, // Sem padding para mover mais à esquerda
-    marginLeft: 0,  // Remove margem adicional
+    paddingLeft: 0,
+    marginLeft: 0,
   },
   headerRightContainerStyle: {
-    paddingRight: 0,
+    paddingRight: 10,
   },
 });
 
@@ -163,26 +168,38 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    paddingHorizontal: 0, 
+    paddingHorizontal: 0,
   },
   menuButtonContainer: {
+    flex: 0,
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
-    paddingRight: 5,
+    marginLeft: 0,
+  },
+  searchContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#d60b52', // Cor de fundo vermelha
+    borderRadius: 5,
+    borderColor: '#fff', // Bordas brancas
+    borderWidth: 1,
+    paddingHorizontal: 10,
+    marginHorizontal: 10,
+    height: 35,
+  },
+  searchIcon: {
+    marginRight: 5,
   },
   searchInput: {
-    flex: 1, 
-    backgroundColor: '#fff',
-    paddingHorizontal: 10,
-    borderRadius: 5,
-    height: 35,
-    marginHorizontal: 10, 
-    borderColor: '#ccc',
-    borderWidth: 1,
+    flex: 1,
+    color: '#fff', // Texto branco para contrastar com o fundo
+    height: '100%',
   },
   notificationIcon: {
     paddingLeft: 0,
-
+    flex: 0,
   },
 });
+
 
