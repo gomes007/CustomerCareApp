@@ -1,8 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-import { View, TextInput, StyleSheet, TouchableOpacity } from "react-native";
+import { Platform, StyleSheet, TextInput, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import { Platform } from "react-native";
 
 import { AboutScreen } from "../pages/About";
 import { ContactScreen } from "../pages/Contact";
@@ -47,7 +46,7 @@ const MenuButton = ({ navigation }) => (
 );
 
 const headerStyles = {
-  backgroundColor: theme.colors.card, // Usar estilo padrão para cabeçalhos
+  backgroundColor: theme.colors.card,
   ...(Platform.OS === "ios"
     ? {
         shadowColor: "#000",
@@ -81,25 +80,27 @@ const defaultScreenOptions = ({ navigation }) => ({
 
 const homeMainOptions = ({ navigation }) => ({
   ...commonScreenOptions,
-  headerStyle: { backgroundColor: theme.colors.headerHomeBackground }, // Aplica cor de fundo específica somente para Home
-  headerLeft: () => <MenuButton navigation={navigation} />,
-  headerTitle: "",
-  headerLeftContainerStyle: {
-    paddingLeft: 10,
-  },
-  headerRight: () => (
-    <View style={styles.searchContainer}>
+  headerStyle: { backgroundColor: theme.colors.headerHomeBackground },
+  headerTitle: () => (
+    <View style={styles.headerContainer}>
+      <View style={styles.menuButtonContainer}>
+        <MenuButton navigation={navigation} />
+      </View>
       <TextInput
         style={styles.searchInput}
         placeholder="Buscar..."
         placeholderTextColor="#888"
       />
+      <Icon name="notifications-outline" size={24} color="#000" style={styles.notificationIcon} />
     </View>
   ),
+  headerTitleAlign: 'center', // Garante que o título seja centralizado no cabeçalho
+  headerLeftContainerStyle: {
+    paddingLeft: 0, // Sem padding para mover mais à esquerda
+    marginLeft: 0,  // Remove margem adicional
+  },
   headerRightContainerStyle: {
-    paddingRight: 10,
-    flex: 1,
-    justifyContent: "center",
+    paddingRight: 0,
   },
 });
 
@@ -156,19 +157,32 @@ export function CustomerStack() {
 }
 
 const styles = StyleSheet.create({
-  searchContainer: {
-    flex: 1, 
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+  headerContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    paddingHorizontal: 0, 
+  },
+  menuButtonContainer: {
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    paddingRight: 5,
   },
   searchInput: {
-    backgroundColor: "#fff",
+    flex: 1, 
+    backgroundColor: '#fff',
     paddingHorizontal: 10,
     borderRadius: 5,
     height: 35,
-    width: "100%",
-    borderColor: "#ccc",
+    marginHorizontal: 10, 
+    borderColor: '#ccc',
     borderWidth: 1,
   },
+  notificationIcon: {
+    paddingLeft: 0,
+
+  },
 });
+
