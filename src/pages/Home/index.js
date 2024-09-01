@@ -27,7 +27,7 @@ import {
 
 export function HomeScreen({ navigation }) {
   const [selectedOption, setSelectedOption] = useState("");
-  const [isRadioSelected, setIsRadioSelected] = useState(false);
+  const [selectedRadio, setSelectedRadio] = useState(null);
   const [isChecked, setIsChecked] = useState(false);
   const [date, setDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -54,10 +54,20 @@ export function HomeScreen({ navigation }) {
 
         {/* Radio Component */}
         <RadioContainer>
-          <RadioButton onPress={() => setIsRadioSelected(!isRadioSelected)}>
-            {isRadioSelected && <RadioSelected />}
+          <RadioButton onPress={() => setSelectedRadio("option1")}>
+            {selectedRadio === "option1" && <RadioSelected />}
           </RadioButton>
-          <RadioLabel>Selecionar opção</RadioLabel>
+          <RadioLabel onPress={() => setSelectedRadio("option1")}>
+            Opção 1
+          </RadioLabel>
+        </RadioContainer>
+        <RadioContainer>
+          <RadioButton onPress={() => setSelectedRadio("option2")}>
+            {selectedRadio === "option2" && <RadioSelected />}
+          </RadioButton>
+          <RadioLabel onPress={() => setSelectedRadio("option2")}>
+            Opção 2
+          </RadioLabel>
         </RadioContainer>
 
         {/* Checkbox Component */}
@@ -65,7 +75,9 @@ export function HomeScreen({ navigation }) {
           <CheckboxButton onPress={() => setIsChecked(!isChecked)}>
             {isChecked && <CheckboxSelected />}
           </CheckboxButton>
-          <CheckboxLabel>Marcar opção</CheckboxLabel>
+          <CheckboxLabel onPress={() => setIsChecked(!isChecked)}>
+            Marcar opção
+          </CheckboxLabel>
         </CheckboxContainer>
 
         {/* DatePicker Component */}
