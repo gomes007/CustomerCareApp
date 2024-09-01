@@ -1,30 +1,88 @@
-import React from 'react';
+import React, { useState } from "react";
+import { Alert, Text, Platform, View } from "react-native"; // Adicionado Platform e View
+import DateTimePicker from "@react-native-community/datetimepicker"; // Correção: Importar diretamente aqui
 import {
-    Background,
-    ButtonText,
-    Container,
-    HighlightedContainer,
-    InfoText,
-    SecondaryButton,
-    Title
-} from './styles';
+  Background,
+  Button,
+  ButtonText,
+  Container,
+  Title,
+  IconButton,
+  Card,
+  Label,
+  Icon,
+  Select,
+  RadioContainer,
+  RadioButton,
+  RadioSelected,
+  RadioLabel,
+  CheckboxContainer,
+  CheckboxButton,
+  CheckboxSelected,
+  CheckboxLabel,
+  DatePickerContainer,
+  DatePickerButton,
+  DatePickerText,
+} from "../../components/components";
 
 export function HomeScreen({ navigation }) {
-    return (
-        <Background>
+  const [selectedOption, setSelectedOption] = useState("");
+  const [isRadioSelected, setIsRadioSelected] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [date, setDate] = useState(new Date());
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
-            <Container>
-                <Title>Welcome to the Home Screen</Title>
-                <InfoText>Your app's main page</InfoText>
+  const handleDateChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShowDatePicker(Platform.OS === "ios");
+    setDate(currentDate);
+  };
 
-                <HighlightedContainer>
-                    <InfoText>Special Announcement: Check out the new features!</InfoText>
-                </HighlightedContainer>
+  return (
+    <Background>
+      <Container>
+        <Title>Formulário de Exemplo</Title>
 
-                <SecondaryButton onPress={() => navigation.navigate('ProfileTab')}>
-                    <ButtonText>Go to Profile</ButtonText>
-                </SecondaryButton>
-            </Container>
-        </Background>
-    );
+        {/* Select Component */}
+        <Select
+          selectedValue={selectedOption}
+          onValueChange={(itemValue) => setSelectedOption(itemValue)}
+        >
+          <Select.Item label="Option 1" value="option1" />
+          <Select.Item label="Option 2" value="option2" />
+        </Select>
+
+        {/* Radio Component */}
+        <RadioContainer>
+          <RadioButton onPress={() => setIsRadioSelected(!isRadioSelected)}>
+            {isRadioSelected && <RadioSelected />}
+          </RadioButton>
+          <RadioLabel>Selecionar opção</RadioLabel>
+        </RadioContainer>
+
+        {/* Checkbox Component */}
+        <CheckboxContainer>
+          <CheckboxButton onPress={() => setIsChecked(!isChecked)}>
+            {isChecked && <CheckboxSelected />}
+          </CheckboxButton>
+          <CheckboxLabel>Marcar opção</CheckboxLabel>
+        </CheckboxContainer>
+
+        {/* DatePicker Component */}
+        <DatePickerContainer>
+          <DatePickerButton onPress={() => setShowDatePicker(true)}>
+            <DatePickerText>{date.toDateString()}</DatePickerText>
+          </DatePickerButton>
+          {showDatePicker && (
+            <DateTimePicker
+              value={date}
+              mode="date"
+              display="default"
+              onChange={handleDateChange}
+            />
+          )}
+        </DatePickerContainer>
+      </Container>
+    </Background>
+  );
 }

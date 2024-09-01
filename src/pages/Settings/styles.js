@@ -27,7 +27,7 @@ export const SettingItem = styled.View`
     shadow-opacity: 0.22;
     shadow-radius: 2.22px;
   `}
-  elevation: 3; /* Elevation for Android */
+  elevation: 3;
 `;
 
 export const SettingLabel = styled.Text`

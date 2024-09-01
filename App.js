@@ -3,7 +3,9 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { DrawerScreens } from "./src/navigation/DrawerScreens";
 
+
 export default function App() {
+
   return (
     <>
       <StatusBar backgroundColor="#d60b52" style="light" />
@@ -12,4 +14,5 @@ export default function App() {
       </NavigationContainer>
     </>
   );
+  
 }

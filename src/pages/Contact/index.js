@@ -1,15 +1,14 @@
-// File: ContactScreen.js
 import React, { useState } from 'react';
 import {
-    Background,
-    Container,
-    Input,
-    TextArea,
-    Button,
-    ButtonText,
-    Title,
-    Label,
-} from './styles';
+  Background,
+  Button,
+  ButtonText,
+  Input,
+  Label,
+  Container,
+  Title,
+  TextArea,
+} from "../../components/components";
 
 export function ContactScreen() {
     const [name, setName] = useState('');
@@ -17,7 +16,6 @@ export function ContactScreen() {
     const [message, setMessage] = useState('');
 
     const handleSubmit = () => {
-        // Handle form submission logic here
         console.log('Form submitted', { name, email, message });
     };
 

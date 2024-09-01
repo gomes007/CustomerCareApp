@@ -1,4 +1,3 @@
-// File: NotificationsScreen.js
 import React from 'react';
 import {
     Background,

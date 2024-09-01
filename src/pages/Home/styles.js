@@ -71,5 +71,5 @@ export const Overlay = styled.View`
   background-color: ${theme.colors.overlay};
   justify-content: center;
   align-items: center;
-  z-index: 1;  /* Make sure the overlay appears above other content */
+  z-index: 1;
 `;
